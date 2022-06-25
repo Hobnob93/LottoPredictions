@@ -1,6 +1,7 @@
 ﻿using LottoPredictions.Core.Enums;
 using LottoPredictions.Core.Interfaces;
 using LottoPredictions.Core.Models;
+using System;
 
 namespace LottoPredictions.Core.Services
 {
@@ -8,11 +9,13 @@ namespace LottoPredictions.Core.Services
     {
         private readonly IBallSetFactory _ballSetFactory;
         private readonly ISetsContainerFactory _containerFactory;
+        private readonly ITicketGenerator _ticketGenerator;
 
-        public Service(IBallSetFactory ballSetFactory, ISetsContainerFactory containerFactory)
+        public Service(IBallSetFactory ballSetFactory, ISetsContainerFactory containerFactory, ITicketGenerator ticketGenerator)
         {
             _ballSetFactory = ballSetFactory;
             _containerFactory = containerFactory;
+            _ticketGenerator = ticketGenerator;
         }
 
 
@@ -25,6 +28,8 @@ namespace LottoPredictions.Core.Services
             var container = _containerFactory.FromIndividualSets(firstBallSet, secondBallSet, thunderballs);
 
             var numTickets = GetNumberTicketsToGenerate();
+
+            _ticketGenerator.GenerateTickets(container, numTickets);
         }
 
         private BallSet RequestBallSet(string message, BallSetType ballSetType)

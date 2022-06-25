@@ -15,6 +15,7 @@ try
         services.AddSingleton<IService, Service>();
         services.AddTransient<IBallSetFactory, BallSetFactory>();
         services.AddTransient<ISetsContainerFactory, SetsContainerFactory>();
+        services.AddTransient<ITicketGenerator, TicketGenerator>();
     })
     .Build();
 
