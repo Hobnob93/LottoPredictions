@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Hosting;
 using LottoPredictions.Core.Interfaces;
 using LottoPredictions.Core.Services;
+using LottoPredictions.Core.Factories;
 
 IHost? host = null;
 
@@ -10,8 +11,10 @@ try
     Console.WriteLine("Initialising host...");
     host = Host.CreateDefaultBuilder(args)
     .UseConsoleLifetime()
-    .ConfigureServices((_, services) =>
-        services.AddSingleton<IService, Service>())
+    .ConfigureServices((_, services) => {
+        services.AddSingleton<IService, Service>();
+        services.AddTransient<IBallSetFactory, BallSetFactory>();
+    })
     .Build();
 
     Console.WriteLine("Starting host...");
