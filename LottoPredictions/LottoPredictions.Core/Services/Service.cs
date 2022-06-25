@@ -26,10 +26,18 @@ namespace LottoPredictions.Core.Services
             var thunderballs = RequestBallSet("\nPlease provide the list of thunderballs.", BallSetType.Thunderball);
 
             var container = _containerFactory.FromIndividualSets(firstBallSet, secondBallSet, thunderballs);
-
             var numTickets = GetNumberTicketsToGenerate();
-
             _ticketGenerator.GenerateTickets(container, numTickets);
+
+            while (_ticketGenerator.HasNext)
+            {
+                Console.WriteLine("Press enter to see next ticket");
+                Console.ReadLine();
+
+                var ticket = _ticketGenerator.Next();
+                Console.WriteLine(ticket);
+                Console.WriteLine();
+            }
         }
 
         private BallSet RequestBallSet(string message, BallSetType ballSetType)
