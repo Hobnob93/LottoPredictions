@@ -23,6 +23,8 @@ namespace LottoPredictions.Core.Services
             var thunderballs = RequestBallSet("\nPlease provide the list of thunderballs.", BallSetType.Thunderball);
 
             var container = _containerFactory.FromIndividualSets(firstBallSet, secondBallSet, thunderballs);
+
+            var numTickets = GetNumberTicketsToGenerate();
         }
 
         private BallSet RequestBallSet(string message, BallSetType ballSetType)
@@ -55,6 +57,33 @@ namespace LottoPredictions.Core.Services
             while (string.IsNullOrEmpty(input));
 
             return input;
+        }
+
+        private int GetNumberTicketsToGenerate()
+        {
+            int count;
+            bool isValid;
+
+            do
+            {
+                count = 0;
+                isValid = false;
+
+                Console.WriteLine("\nHow many tickets to generate?");
+                Console.Write("Ticket Count: ");
+                var input = Console.ReadLine();
+
+                if (string.IsNullOrEmpty(input))
+                    continue;
+
+                isValid = int.TryParse(input, out count);
+
+                if (isValid && count == 0)
+                    isValid = false;
+            }
+            while (!isValid);
+
+            return count;
         }
     }
 }

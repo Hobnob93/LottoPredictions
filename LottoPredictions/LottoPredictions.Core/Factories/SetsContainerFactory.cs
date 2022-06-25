@@ -1,6 +1,5 @@
 ﻿using LottoPredictions.Core.Interfaces;
 using LottoPredictions.Core.Models;
-using System.Linq;
 
 namespace LottoPredictions.Core.Factories
 {
