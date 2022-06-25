@@ -6,8 +6,6 @@ namespace LottoPredictions.Core.Factories
 {
     public class BallSetFactory : IBallSetFactory
     {
-        public BallSet Empty => new();
-
         public (bool, BallSet) FromInput(BallSetType type, string input)
         {
             (var isValid, var rawNumbers) = SplitInput(input);

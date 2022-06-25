@@ -14,6 +14,7 @@ try
     .ConfigureServices((_, services) => {
         services.AddSingleton<IService, Service>();
         services.AddTransient<IBallSetFactory, BallSetFactory>();
+        services.AddTransient<ISetsContainerFactory, SetsContainerFactory>();
     })
     .Build();
 

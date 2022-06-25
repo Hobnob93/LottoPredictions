@@ -5,7 +5,6 @@ namespace LottoPredictions.Core.Interfaces
 {
     public interface IBallSetFactory
     {
-        public BallSet Empty { get; }
         public (bool, BallSet) FromInput(BallSetType type, string input);
     }
 }

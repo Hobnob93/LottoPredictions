@@ -4,8 +4,8 @@ namespace LottoPredictions.Core.Models
 {
     public record BallSet
     {
-        public BallSetType Type { get; set; } = BallSetType.Normal;
-        public int[] Balls { get; set; } = Array.Empty<int>();
+        public BallSetType Type { get; init; } = BallSetType.Normal;
+        public int[] Balls { get; init; } = Array.Empty<int>();
 
         public override string ToString()
         {
